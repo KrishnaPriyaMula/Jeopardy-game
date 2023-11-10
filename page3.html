@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeopardy Game - Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #3E75F2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 600px;
+            background-color: #3E75F2;
+            border: 2px solid white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            box-sizing: border-box;
+        }
+
+        .header {
+            font-size: 2.5em;
+            color: #FFF;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .form-group input[type="text"], .form-group input[type="password"], .form-group input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .face-icon {
+            font-size: 2em;
+            margin: 20px 0;
+            color: white;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #FFF;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #3E75F2;
+            color: #FFF;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">JEOPARDY GAME</div>
+        <h2>Register</h2>
+        <div class="form-group">
+            <label for="first-name">First Name :</label>
+            <input type="text" id="first-name">
+        </div>
+        <div class="form-group">
+            <label for="last-name">Last Name :</label>
+            <input type="text" id="last-name">
+        </div>
+        <div class="form-group">
+            <label for="email">E-Mail :</label>
+            <input type="email" id="email">
+        </div>
+        <div class="form-group">
+            <label for="password">Create Password :</label>
+            <input type="password" id="password">
+        </div>
+        <div class="face-icon">
+            <img src="face.png" height="90" width="90" style="border-radius: 50%;">
+        </div>
+        <button>Submit</button>
+    </div>
+</body>
+</html>

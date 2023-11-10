@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeopardy Game</title>
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: #3E75F2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+        }
+       
+        
+        .title {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+        /* Style for the quit button/link in the top right corner */
+        .quit {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+
+        .header {
+            font-size: 2.5em;
+            color: Gold;
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .sub-header {
+            font-size: 1.5em;
+            color: gold;
+            margin-bottom: 50px;
+
+            font-weight: bold;
+        }
+
+        .buttons {
+            margin-bottom: 50px;
+            
+        }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #FFF;
+            border: none;
+            border-radius: 5px;
+            margin: 0 10px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .privacy {
+            color: #FFF;
+            text-decoration: underline;
+        }
+        table {
+          margin: 0 auto;
+          width: 80%;
+          border-collapse: collapse;
+        }
+
+/* Style the table header */
+        th {
+          background-color: #f2f2f2;
+          text-align: center;
+          padding: 8px;
+        }
+
+/* Style the table cells */
+        td {
+         text-align: center;
+         padding: 8px;
+         border: 1px solid #ddd;
+        }
+        table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    th, td {
+      padding: 8px;
+      text-align: center;
+      border: 1px solid #ddd;
+    }
+
+    td:hover {
+      background-color: #FFFF00;
+    }
+</style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">START GAME</div>
+        <div class="quit" href="#">END GAME</div>        
+    </div>
+ <table>
+    <tr>
+      <th>Computer Science</th>
+      <th>Information Technology</th>
+      <th>Data science</th>
+      <th>Machine Learning</th>
+      <th>Cloud</th>
+    </tr>
+    <tr>
+      <td onclick="this.style.backgroundColor = '#FFFF00';">100</td>
+      <td onclick="this.style.backgroundColor = '#FFFF00';">100</td>
+      <td onclick="this.style.backgroundColor = '#FFFF00';">100</td>
+      <td onclick="this.style.backgroundColor = '#FFFF00';">100</td>
+      <td onclick="this.style.backgroundColor = '#FFFF00';">100</td>
+    </tr>
+    <tr>
+      <td onclick="this.style.backgroundColor = '#FFFF00';">200</td>
+      <td onclick="this.style.backgroundColor = '#FFFF00';">200</td>
+      <td onclick="this.style.backgroundColor = '#FFFF00';">200</td>
+      <td onclick="this.style.backgroundColor = '#FFFF00';">200</td>
+      <td onclick="this.style.backgroundColor = '#FFFF00';">200</td>
+    </tr>
+    <tr>
+      <td onclick="this.style.backgroundColor = '#FFFF00';">300</td>
+      <td onclick="this.style.backgroundColor = '#FFFF00';">300</td>
+      <td onclick="this.style.backgroundColor = '#FFFF00';">300</td>
+      <td onclick="this.style.backgroundColor = '#FFFF00';">300</td>
+      <td onclick="this.style.backgroundColor = '#FFFF00';">300</td>
+    </tr>
+    <tr>
+      <td onclick="this.style.backgroundColor = '#FFFF00';">400</td>
+      <td onclick="this.style.backgroundColor = '#FFFF00';">400</td>
+      <td onclick="this.style.backgroundColor = '#FFFF00';">400</td>
+      <td onclick="this.style.backgroundColor = '#FFFF00';">400</td>
+      <td onclick="this.style.backgroundColor = '#FFFF00';">400</td>
+    </tr>
+    <tr>
+      <td onclick="this.style.backgroundColor = '#FFFF00';">500</td>
+      <td onclick="this.style.backgroundColor = '#FFFF00';">500</td>
+      <td onclick="this.style.backgroundColor = '#FFFF00';">500</td>
+      <td onclick="this.style.backgroundColor = '#FFFF00';">500</td>
+      <td onclick="this.style.backgroundColor = '#FFFF00';">500</td>
+    </tr>
+  </table>
+</body>
+</html>
