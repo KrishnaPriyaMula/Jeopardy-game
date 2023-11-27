@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Data Science Quiz</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<style>
+  body {
+    background-color: #3e75f2; /* Dark blue background */
+    color: #fff; /* White text */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: #3e75f2; /* Match the body background */
+    border-bottom: 2px solid #fff; /* Add border if needed */
+  }
+  .navbar .timer {
+    color: #00ddff; /* Styling the timer color */
+  }
+  .question-container {
+    text-align: center;
+    padding: 2rem; /* Adjust the space around the question as needed */
+    flex-grow: 1; /* Ensures that the question container takes up the remaining space */
+  }
+  .question {
+    margin-bottom: 2rem; /* Space below the question */
+  }
+  .options {
+    list-style: none;
+    padding: 0;
+  }
+  .custom-control {
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+  .custom-radio .custom-control-input:checked ~ .custom-control-label::before {
+    color: #fff;
+    border-color: #00ddff;
+    background-color: #00ddff;
+  }
+  .custom-radio .custom-control-label::before {
+    background-color: transparent;
+    border: 2px solid #fff;
+  }
+  .custom-radio .custom-control-label {
+    color: #fff;
+    cursor: pointer;
+  }
+  /* Styles for correct and incorrect selections */
+  .correct::before {
+    background-color: #28a745 !important; /* Green for correct */
+    border-color: #28a745 !important;
+  }
+  
+  .incorrect::before {
+    background-color: #dc3545 !important; /* Red for incorrect */
+    border-color: #dc3545 !important;
+  }
+</style>
+</head>
+<body>
+
+<div class="navbar">
+  <div class="back">&larr; Back</div>
+  <div class="timer">[00:20]</div>
+</div>
+
+<div class="question-container">
+  <div class="question">
+    <h2>Choose one correct main Stage of data science process</h2>
+  </div>
+  
+  <div class="options">
+    <div class="custom-control custom-radio">
+      <input type="radio" id="dataMining" name="dataScienceStage" class="custom-control-input">
+      <label class="custom-control-label" for="dataMining">Data Mining</label>
+    </div>
+    <div class="custom-control custom-radio">
+      <input type="radio" id="dataCollection" name="dataScienceStage" class="custom-control-input">
+      <label class="custom-control-label" for="dataCollection">Data Collection</label>
+    </div>
+    <div class="custom-control custom-radio">
+      <input type="radio" id="unstructuredData" name="dataScienceStage" class="custom-control-input">
+      <label class="custom-control-label" for="unstructuredData">Unstructured data</label>
+    </div>
+    <div class="custom-control custom-radio">
+      <input type="radio" id="autoScaling" name="dataScienceStage" class="custom-control-input">
+      <label class="custom-control-label" for="autoScaling">Auto Scaling</label>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const radios = document.querySelectorAll('.custom-control-input');
+    let timerSeconds = 20;
+
+    const timerElement = document.querySelector('.timer');
+
+    function updateTimerDisplay() {
+      const minutes = Math.floor(timerSeconds / 60);
+      const seconds = timerSeconds % 60;
+      timerElement.textContent = `[${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}]`;
+    }
+
+    function startTimer() {
+      updateTimerDisplay();
+      const timerInterval = setInterval(function() {
+        timerSeconds--;
+        updateTimerDisplay();
+
+        if (timerSeconds <= 0) {
+          clearInterval(timerInterval);
+          // Handle time up logic here
+          alert('Time is up!');
+        }
+      }, 1000);
+    }
+
+    startTimer();
+    radios.forEach(radio => {
+      radio.addEventListener('click', function() {
+        // Remove any previous styles
+        radios.forEach(radio => {
+          radio.parentNode.classList.remove('correct', 'incorrect');
+        });
+        // Apply new style based on correct or incorrect answer
+        if (this.id === 'dataCollection') {
+          this.parentNode.classList.add('correct');
+        } else {
+          this.parentNode.classList.add('incorrect');
+        }
+      });
+    });
+  });
+</script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7
