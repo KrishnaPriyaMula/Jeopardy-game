@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeopardy Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #3E75F2;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 700px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .login-section {
+            width: 60%;
+        }
+
+        .title {
+            font-size: 2.5em;
+            color: #FFF;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: #FFF;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: none;
+            border-radius: 5px;
+        }
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .button {
+            display: block;
+            margin: auto;
+            padding: 10px 20px;
+            background-color: #FFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #3E75F2;
+            color: #FFF;
+        }
+
+        .face-recognition {
+            width: 30%;
+            text-align: center;
+        }
+
+        .face-image {
+            width: 100%;
+            margin-bottom: 10px;
+            border-radius: 5px;
+        }
+         #camera-btn {
+            background-color: #3E75F2;
+            color: white;
+            border: 1px solid white;
+            cursor: pointer;
+            text-align: center;
+            transition: background-color 0.3s;
+        }
+
+        #camera-btn:hover {
+            background-color: #FFF;
+            color: #3E75F2;
+        }
+
+        button:hover {
+    background-color: #FFF;
+    color: #3E75F2;
+}
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="login-section">
+            <div class="title">JEOPARDY GAME</div>
+            <label for="login">LOGIN:</label>
+            <input type="text" id="login">
+            <label for="password">PASSWORD:</label>
+            <input type="password" id="password">          
+            <div class="button-container">
+                <a href="gamehome.html"><button class="button">Sign In</button></a>
+                <a href="Register.html"><button class="button">Register</button></a>
+            </div>
+            <a href="forgotpassword.html">
+                <div class="reset-password">Forgot Password? Reset with email</div>
+            </a>
+        </div>
+
+        <div class="face-recognition">
+            <div class="face-image" style="border-radius: 50%;">
+                <div class="face-image" id="faceImage">
+                <!-- The captured face image will be displayed here -->
+            </div>
+            <button id="camera-btn">
+                Click to Sign In using Face Recognition
+            </button>
+        </div>
+         <a href="gamehome.html"><button>Login</button></a>
+        
+
+    </div>
+
+    <!-- Include the face-api.js library -->
+    <script src="path/to/face-api.js"></script>
+
+    <script>
+        document.getElementById('camera-btn').addEventListener('click', async () => {
+            const video = document.createElement('video');
+            const faceImage = document.getElementById('faceImage');
+
+            // Get user media
+            const stream = await navigator.mediaDevices.getUserMedia({ video: {} });
+            video.srcObject = stream;
+            document.body.appendChild(video);
+            await video.play();
+
+            // Initialize face-api.js
+            await faceapi.nets.tinyFaceDetector.loadFromUri('/models');
+            await faceapi.nets.faceLandmark68Net.loadFromUri('/models');
+            await faceapi.nets.faceRecognitionNet.loadFromUri('/models');
+
+            // Capture user face and display
+            const canvas = faceapi.createCanvasFromMedia(video);
+            faceImage.innerHTML = '';
+            faceImage.appendChild(canvas);
+            const displaySize = { width: video.width, height: video.height };
+            faceapi.matchDimensions(canvas, displaySize);
+
+            setInterval(async () => {
+                const detections = await faceapi.detectSingleFace(video, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceDescriptor();
+                if (detections) {
+                    const resizedDetections = faceapi.resizeResults(detections, displaySize);
+                    canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+                    faceapi.draw.drawDetections(canvas, resizedDetections);
+                    faceapi.draw.drawFaceLandmarks(canvas, resizedDetections);
+                }
+            }, 100);
+
+            // Stop capturing after 5 seconds (5000 milliseconds)
+            setTimeout(() => {
+                video.srcObject.getTracks().forEach(track => track.stop());
+                video.remove();
+                faceImage.innerHTML = 'Face captured successfully!';
+            }, 5000);
+        });
+    </script>
+   
+</body>
+
+</html>

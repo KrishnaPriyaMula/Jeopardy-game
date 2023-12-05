@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeopardy Game - Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #3E75F2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 600px;
+            background-color: #3E75F2;
+            border: 2px solid white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            box-sizing: border-box;
+        }
+
+        .header {
+            font-size: 2.5em;
+            color: #FFF;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .form-group input[type="text"], .form-group input[type="password"], .form-group input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .face-icon {
+            font-size: 2em;
+            margin: 20px 0;
+            color: white;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #FFF;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #3E75F2;
+            color: #FFF;
+        }
+         #camera-feed {
+            display: none;
+        }
+
+        #captured-image {
+            border-radius: 50%;
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">JEOPARDY GAME</div>
+        <h2>Register</h2>
+        <div class="form-group">
+            <label for="first-name">First Name :</label>
+            <input type="text" id="first-name">
+        </div>
+        <div class="form-group">
+            <label for="last-name">Last Name :</label>
+            <input type="text" id="last-name">
+        </div>
+        <div class="form-group">
+            <label for="email">E-Mail :</label>
+            <input type="email" id="email">
+        </div>
+        <div class="form-group">
+            <label for="password">Create Password :</label>
+            <input type="password" id="password">
+        </div>
+       <div class="form-group">
+            <label for="camera-feed">Capture Image:</label>
+            <video id="camera-feed" width="300" height="200" autoplay></video>
+            <img id="captured-image" height="90" width="90">
+            <button onclick="captureImage()">Capture</button>
+        </div>
+        
+
+    <script>
+        // JavaScript to capture image from laptop camera
+        const cameraFeed = document.getElementById('camera-feed');
+        const capturedImage = document.getElementById('captured-image');
+        const captureButton = document.querySelector('button');
+
+        async function initCamera() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+                cameraFeed.srcObject = stream;
+            } catch (err) {
+                console.error('Error accessing camera:', err);
+            }
+        }
+
+        function captureImage() {
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            canvas.width = 300;
+            canvas.height = 200;
+
+            context.drawImage(cameraFeed, 0, 0, canvas.width, canvas.height);
+
+            // Convert the captured image to base64 format
+            const base64Image = canvas.toDataURL('image/png');
+
+            // Set the captured image to the img element
+            capturedImage.src = base64Image;
+
+            // Stop the camera feed
+            const tracks = cameraFeed.srcObject.getTracks();
+            tracks.forEach(track => track.stop());
+
+            // Hide the camera feed
+            cameraFeed.style.display = 'none';
+            // Show the captured image
+            capturedImage.style.display = 'block';
+            // Disable the capture button
+            captureButton.disabled = true;
+        }
+
+        // Initialize camera when the page loads
+        window.addEventListener('DOMContentLoaded', initCamera);
+    </script>
+        
+        <a href="login.html"><button>Submit</button></a>
+    </div>
+</body>
+</html>
