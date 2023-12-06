@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Data Science Quiz</title>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <style>
   body {
     background-color: #3e75f2; /* Dark blue background */
@@ -70,79 +66,64 @@
 <body>
 
 <div class="navbar">
-  <div class="back">&larr; Back</div>
-  <div class="timer">[00:20]</div>
+  <div class="timer" id="timer">[00:20]</div>
 </div>
 
 <div class="question-container">
   <div class="question">
-    <h2>Choose one correct main Stage of data science process</h2>
+    <h2 id="questionText"></h2>
   </div>
   
-  <div class="options">
-    <div class="custom-control custom-radio">
-      <input type="radio" id="dataMining" name="dataScienceStage" class="custom-control-input">
-      <label class="custom-control-label" for="dataMining">Data Mining</label>
-    </div>
-    <div class="custom-control custom-radio">
-      <input type="radio" id="dataCollection" name="dataScienceStage" class="custom-control-input">
-      <label class="custom-control-label" for="dataCollection">Data Collection</label>
-    </div>
-    <div class="custom-control custom-radio">
-      <input type="radio" id="unstructuredData" name="dataScienceStage" class="custom-control-input">
-      <label class="custom-control-label" for="unstructuredData">Unstructured data</label>
-    </div>
-    <div class="custom-control custom-radio">
-      <input type="radio" id="autoScaling" name="dataScienceStage" class="custom-control-input">
-      <label class="custom-control-label" for="autoScaling">Auto Scaling</label>
-    </div>
+  <div class="options" id="optionsContainer">
+    <!-- Options will be populated here -->
   </div>
 </div>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const radios = document.querySelectorAll('.custom-control-input');
-    let timerSeconds = 20;
+    const currentQuestion = JSON.parse(localStorage.getItem('currentQuestion'));
+    document.getElementById('questionText').innerText = currentQuestion.question;
+    const optionsContainer = document.getElementById('optionsContainer');
 
-    const timerElement = document.querySelector('.timer');
+    currentQuestion.answers.forEach((answer, index) => {
+      const optionId = 'option' + index;
+      const optionElement = document.createElement('div');
+      optionElement.className = 'custom-control custom-radio';
+      optionElement.innerHTML = `
+        <input type="radio" id="${optionId}" name="questionOption" class="custom-control-input">
+        <label class="custom-control-label" for="${optionId}">${answer}</label>
+      `;
+      optionsContainer.appendChild(optionElement);
 
-    function updateTimerDisplay() {
-      const minutes = Math.floor(timerSeconds / 60);
-      const seconds = timerSeconds % 60;
-      timerElement.textContent = `[${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}]`;
-    }
-
-    function startTimer() {
-      updateTimerDisplay();
-      const timerInterval = setInterval(function() {
-        timerSeconds--;
-        updateTimerDisplay();
-
-        if (timerSeconds <= 0) {
-          clearInterval(timerInterval);
-          // Handle time up logic here
-          alert('Time is up!');
-        }
-      }, 1000);
-    }
-
-    startTimer();
-    radios.forEach(radio => {
-      radio.addEventListener('click', function() {
-        // Remove any previous styles
-        radios.forEach(radio => {
-          radio.parentNode.classList.remove('correct', 'incorrect');
-        });
-        // Apply new style based on correct or incorrect answer
-        if (this.id === 'dataCollection') {
-          this.parentNode.classList.add('correct');
+      document.getElementById(optionId).addEventListener('click', function() {
+        if (answer === currentQuestion.correct) {
+          optionElement.classList.add('correct');
         } else {
-          this.parentNode.classList.add('incorrect');
+          optionElement.classList.add('incorrect');
         }
       });
     });
+
+    // Set up the timer
+    let timeLeft = 20; // 20 seconds
+    const timerElement = document.getElementById('timer');
+    const radioInputs = document.querySelectorAll('.custom-control-input');
+
+    const timerInterval = setInterval(function() {
+      if (timeLeft <= 0) {
+        clearInterval(timerInterval);
+        timerElement.innerText = "Time's up!";
+        // Disable radio inputs when time's up
+        radioInputs.forEach(input => input.disabled = true);
+        // You can add additional code here to handle other actions when time's up.
+      } else {
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        timerElement.innerText = `[${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}]`;
+        timeLeft--;
+      }
+    }, 1000); // Update the timer every second
   });
 </script>
-
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7
+</body>
+</html>
