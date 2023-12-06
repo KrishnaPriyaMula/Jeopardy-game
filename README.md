@@ -39,5 +39,6 @@ Krishna Priya:
 * November 6th & 7th created HTML code for Categories page, score page , Questions page,
 *	November 10th : creating home page and working on timer and user face recognition in HTML code.
 
-
+december 6th: 
+Updated javascript to update the score when correct answer is selected and it adds zero to the totalscore when wrong answer is selected
 
