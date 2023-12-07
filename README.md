@@ -25,7 +25,7 @@ Rushi Kiran:
 
 *September 19 Module 6 nonfunctional requirement with (partial information) in SRS Document.
 
-
+Updated javascript to update the score when correct answer is selected and it adds zero to the totalscore when wrong answer is selected
 
 Krishna Priya: 
 
