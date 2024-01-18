@@ -1,43 +1,52 @@
-# JeopardyPSWE
-Jeopardy Game Project - Principles of Software Engineering
+Introduction in SRS Document:
+•	Crafted a comprehensive introduction in the Software Requirements Specification (SRS) document.
+•	Outlined the purpose, scope, and objectives of the software project.
+•	Provided a brief overview of the key features and functionalities to set the context for the development process.
 
-Malak: 
+External Interface Requirement in SRS Document:
+•	Defined the external interfaces that the software system interacts with.
+•	Specified the requirements for communication and data exchange with external entities.
+•	Addressed integration points and dependencies on external systems or components.
 
-* September 19th Module 1 introduction in SRS Dcument 
-*	November 1st worked on HTML code of user login credentials  and registering user data of first 5 pages from UI Diagram.
+System Features and Other Requirements in SRS Document:
+•	Detailed the specific features and functionalities that the system would offer.
+•	Outlined user requirements, system behavior, and constraints.
+•	Defined any additional requirements related to performance, security, and usability.
 
+Nonfunctional Requirement:
+•	Specified nonfunctional requirements that focus on system attributes such as performance, scalability, and reliability.
+•	Addressed aspects like user experience, security measures, and system maintenance requirements.
+•	Provided a clear understanding of the software's behavior under various conditions.
 
-Anoushka: 
+Designed Architecture Diagram:
+•	Created a visual representation of the software architecture.
+•	Illustrated the structure and components of the system.
+•	Demonstrated the relationships and interactions between different modules.
 
-*	September 26 Module 2 worked on overall description with missing of architecture diagram and some details in SRS Document
-* November 7th sent backend code of python 26 lines of unworking code 
+UI Diagram:
+•	Developed a user interface (UI) diagram to visualize the layout and structure of the user interface.
+•	Defined the placement of elements, navigation flow, and overall design of the user-facing components.
+•	Used the UI diagram as a guide for implementing the front-end of the application.
 
+Created User Data and Multiple-Choice Question Data in CSV Files:
+•	Generated CSV files containing user data, including first and last names, email IDs and passwords.
+•	Created CSV files with questions and multiple-choice answers categorized in Computer Science, Information Technology, Data Science, Machine Learning, and Cloud.
 
+Designed Frontend Pages Using HTML, CSS, JavaScript:
+•	Implemented front-end development using HTML for structure, CSS for styling, and JavaScript for interactive elements.
+•	Designed and coded various pages, including login credentials with face recognition, registration forms, game categories, score pages, and questions pages.
 
-Sai Ram : 
+Developed Backend Using PostgreSQL by Uploading CSV Files:
+•	Established a backend database using PostgreSQL.
+•	Uploaded user data and multiple-choice question data from CSV files into the database.
+•	Ensured data integrity and connectivity between the backend and frontend.
 
-*	September 19- Module 3 & 5 system features and other requirements in SRS document.
-*	November 6th sent HTML, CSS, JavaScript code work of only one question page with unrelative data.
-*	November 7th created questions page in HTML code.
-
-
-Rushi Kiran: 
-
-*September 19 Module 6 nonfunctional requirement with (partial information) in SRS Document.
-
-Updated javascript to update the score when correct answer is selected and it adds zero to the totalscore when wrong answer is selected
-
-Krishna Priya: 
-
-*	September 19th Module 4 external interface Requirement in SRS Document
-*	September 24th Module 2 designed Architecture diagram, Module 6 nonfunctional requirement, Module 2 modified few description from overall description and making documentation in SRS Document.
-* October 5th created UI diagram in word doc.
-*	October 16th created user last and first name, email ID and populated in csv files
-*	October 19th created questions with Multiple choice answers on Computer science, Information Technology, Data science, Machine learning, Cloud and loaded in csv files
-*	October24th exploring sql code in postgresql
-* October 31st trying to create home page in HTML (in process)
-* November 6th & 7th created HTML code for Categories page, score page , Questions page,
-*	November 10th : creating home page and working on timer and user face recognition in HTML code.
-
-
+Worked on API Using Django:
+•	Utilized Django to develop APIs that facilitate communication between the frontend and backend.
+•	Integrated API functionality to fetch and display data on the user interface.
+•	Merged both frontend and backend components seamlessly using Django APIs.
+Framework and Tools Used:
+•	Utilized Visual Studio Code as the integrated development environment (IDE).
+•	Employed Python programming language for various development tasks, including API creation.
+•	Used PostgreSQL as the backend database to store and retrieve data efficiently.
 
