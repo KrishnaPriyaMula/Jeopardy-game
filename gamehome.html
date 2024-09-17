@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jeopardy Game</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<style>
+    .navbar-custom {
+        background-color: #4b0082;
+        color: white;
+    }
+    .navbar-custom .navbar-brand,
+    .navbar-custom .navbar-nav .nav-link {
+        color: white;
+    }
+    .navbar-custom .navbar-nav .nav-link {
+        margin-right: 15px;
+    }
+    .main-container {
+        background-color: #00008b;
+        color: white;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .footer {
+        background-color: #4b0082;
+        color: white;
+        text-align: center;
+    }
+    /* Custom styles to align nav items */
+    .nav-justified {
+        justify-content: center;
+    }
+    .nav-item.search-item {
+        margin-left: auto;
+    }
+    .online-symbol {
+        height: 10px;
+        width: 10px;
+        background-color: #28a745;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 5px;
+    }
+</style>
+</head>
+<body>
+
+<nav class="navbar navbar-custom navbar-expand-lg navbar-dark" style="border: 1px solid black;">
+    <a class="navbar-brand" href="#"><b>JEOPARDY GAME</b></a>
+    <div class="collapse navbar-collapse" id="navbarTop">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Help</a>
+            </li>
+            <li class="nav-item dropdown">
+                <button class="btn btn-secondary dropdown-toggle" id="navbarDropdownUser" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    User
+                </button>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownUser">
+                    <a class="dropdown-item" href="#">Settings</a>
+                    <a class="dropdown-item" href="#">Delete Account</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="login.html">Logout</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<nav class="navbar navbar-custom navbar-expand-lg navbar-dark" style="border: 1px solid black;">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse nav-justified" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <a class="nav-link active" href="#">About</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownGame" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Game
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownGame">
+                    <a class="dropdown-item" href="gamestart.html">Start</a>
+                    <a class="dropdown-item" href="#">End</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownScore" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Score
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownScore">
+                    <a class="dropdown-item" href="#">Sort by Score: Top to Low</a>
+                    <a class="dropdown-item" href="#">Sort by Score: Low to Top</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">List of Today's Top Scorers</a>
+                </div>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMultiplayer" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Multiplayer
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMultiplayer">
+                    <a class="dropdown-item" href="#"><span class="online-symbol"></span> Player One</a>
+                    <a class="dropdown-item" href="#"><span class="online-symbol"></span> Player Two</a>
+                    <a class="dropdown-item" href="#"><span class="online-symbol"></span> Player Three</a>
+                    <a class="dropdown-item" href="#"><span class="online-symbol"></span> Player Four</a>
+                    <a class="dropdown-item" href="#"><span class="online-symbol"></span> Player Five</a>
+                </div>
+            </li>
+           
+            <form class="form-inline search-item">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            </form>
+        </div>
+    </div>
+</nav>
+
+<div class="main-container">
+    <h1>Welcome To Jeopardy Game</h1>
+    <p>Guess & Win</p>
+</div>
+
+<div class="footer">
+    <p>Privacy / Security policy</p>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
