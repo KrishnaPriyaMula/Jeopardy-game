@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jeopardy Game Board</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<style>
+  body {
+    background-color: #00008b; /* Dark blue background */
+    color: white; /* White text color */
+  }
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+  }
+  .table {
+    width: 100%;
+    max-width: 600px; /* Adjust as needed */
+    margin: auto;
+    border-collapse: collapse;
+  }
+  .table td, .table th {
+    border: 2px solid blue;
+    text-align: center;
+    font-size: large;
+    padding: 20px;
+    background-color: #007bff; /* Bootstrap primary color for contrast */
+    color: white; /* White text for better readability */
+    cursor: pointer; /* Indicates the cell is clickable */
+  }
+  /* Added CSS for clicked cell */
+  .clicked {
+    background-color: yellow !important; /* Overwrites the original color when clicked */
+    color: black !important; /* Ensures the text is readable on the yellow background */
+    transform: scale(0.95); /* Apply a slight scaling effect to make it appear pressed inwards */
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Add a subtle shadow for depth */
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div>Start Game</div>
+  <a href="score.html" style="text-decoration: none; color: white;"><div>End Game</div></a>
+</nav>
+
+<table class="table">
+  <!-- Table headers -->
+  <tr>
+    <th>Computer Science</th>
+    <th>Information Technology</th>
+    <th>Data Science</th>
+    <th>Machine Learning</th>
+    <th>Cloud</th>
+  </tr>
+  <!-- Table rows with numbers filled in -->
+  <tr>
+    <a href="quiz.html"></a><td>100</td>
+    <td>100</td>
+    <td>100</td>
+    <td>100</td>
+    <td>100</td>
+  </tr>
+  <tr>
+    <td>200</td>
+    <td>200</td>
+    <td>200</td>
+    <td>200</td>
+    <td>200</td>
+  </tr>
+  <tr>
+    <td>300</td>
+    <td>300</td>
+    <td>300</td>
+    <td>300</td>
+    <td>300</td>
+  </tr>
+  <tr>
+    <td>400</td>
+    <td>400</td>
+    <td>400</td>
+    <td>400</td>
+    <td>400</td>
+  </tr>
+  <tr>
+    <td>500</td>
+    <td>500</td>
+    <td>500</td>
+    <td>500</td>
+    <td>500</td>
+  </tr>
+</table>
+
+<script>
+  const computerScienceQuestions = {
+    "100": {
+      "question": "What is the purpose of a compiler in programming?",
+      "answers": ["A) Debugging code", "B) Executing code line by line", "C) Converting high-level code to machine code", "D) Managing memory allocation"],
+      "correct": "C) Converting high-level code to machine code"
+    },
+    "200": {
+      "question": "Which data structure follows the Last-In-First-Out (LIFO) principle?",
+      "answers": ["A) Queue", "B) Stack", "C) Linked list", "D) Hash table"],
+      "correct": "B) Stack"
+    },
+    "300": {
+      "question": "In object-oriented programming, what is encapsulation?",
+      "answers": ["A) A method that can be accessed from anywhere in the program", "B) A mechanism to restrict access to certain components of an object", "C) A type of loop for iterating through arrays", "D) A way to define classes in Python"],
+      "correct": "B) A mechanism to restrict access to certain components of an object"
+    },
+    "400": {
+      "question": "What is the primary purpose of an operating system?",
+      "answers": ["A) Running applications", "B) Managing hardware resources", "C) Writing code", "D) Designing user interfaces"],
+      "correct": "B) Managing hardware resources"
+    },
+    "500": {
+      "question": "Which programming language is often used for web development and is known for its versatility and ease of use?",
+      "answers": ["A) Java", "B) C++", "C) Python", "D) JavaScript"],
+      "correct": "D) JavaScript"
+    }
+  };
+  const informationTechnologyQuestions = {
+  "100": {
+    "question": "What is the function of the 'VLOOKUP' in Microsoft Excel?",
+    "answers": [
+      "a) Sorting data",
+      "b) Calculating averages",
+      "c) Looking up and retrieving data from a table",
+      "d) Creating charts"
+    ],
+    "correct": "c) Looking up and retrieving data from a table"
+  },
+  "200": {
+    "question": "Which of the following file extensions is associated with Excel workbooks?",
+    "answers": [
+      "a) .docx",
+      "b) .xlsx",
+      "c) .pdf",
+      "d) .ppt"
+    ],
+    "correct": "b) .xlsx"
+  },
+  "300": {
+    "question": "In Excel, which keyboard shortcut is commonly used to autosum a column of numbers?",
+    "answers": [
+      "a) Ctrl+Z",
+      "b) Ctrl+C",
+      "c) Ctrl+Alt+Delete",
+      "d) Alt+="
+    ],
+    "correct": "d) Alt+="
+  },
+  "400": {
+    "question": "What is the maximum number of rows in an Excel worksheet in the latest versions of Excel?",
+    "answers": [
+      "a) 65,536",
+      "b) 104,8576",
+      "c) 1,048,576",
+      "d) 256"
+    ],
+    "correct": "c) 1,048,576"
+  },
+  "500": {
+    "question": "Which Excel feature is used to protect a worksheet or workbook by setting a password?",
+    "answers": [
+      "a) AutoFilter",
+      "b) Data Validation",
+      "c) Freeze Panes",
+      "d) Password Protection"
+    ],
+    "correct": "d) Password Protection"
+  }
+};
+const dataScienceQuestions = {
+  "100": {
+    "question": "What is the function used in Excel to calculate the mean of a range of numbers?",
+    "answers": [
+      "A) AVG",
+      "B) SUM",
+      "C) AVERAGE",
+      "D) MEDIAN"
+    ],
+    "correct": "C) AVERAGE"
+  },
+  "200": {
+    "question": "Which Excel function is used to find the maximum value in a range of cells?",
+    "answers": [
+      "A) MIN",
+      "B) MAX",
+      "C) LARGEST",
+      "D) SUM"
+    ],
+    "correct": "B) MAX"
+  },
+  "300": {
+    "question": "What does VLOOKUP stand for in Excel?",
+    "answers": [
+      "A) Variable Lookup",
+      "B) Vertical Lookup",
+      "C) Value Locator",
+      "D) Vector Search"
+    ],
+    "correct": "B) Vertical Lookup"
+  },
+  "400": {
+    "question": "Which Excel function is used to count the number of cells that meet a specific condition or criteria?",
+    "answers": [
+      "A) SUM",
+      "B) COUNTIF",
+      "C) AVERAGEIF",
+      "D) MAXIF"
+    ],
+    "correct": "B) COUNTIF"
+  },
+  "500": {
+    "question": "In Excel, what is the purpose of the IF function?",
+    "answers": [
+      "A) To count cells",
+      "B) To sum cells",
+      "C) To perform conditional logic and return values based on a specified condition",
+      "D) To find the minimum value in a range"
+    ],
+    "correct": "C) To perform conditional logic and return values based on a specified condition"
+  }
+};
+const machineLearningQuestions = {
+  "100": {
+    "question": "What is the primary goal of supervised learning in Machine Learning?",
+    "answers": [
+      "A) Clustering",
+      "B) Predictive modeling",
+      "C) Reinforcement learning",
+      "D) Dimensionality reduction"
+    ],
+    "correct": "B) Predictive modeling"
+  },
+  "200": {
+    "question": "Which algorithm is commonly used for linear regression in Machine Learning?",
+    "answers": [
+      "A) k-Nearest Neighbors",
+      "B) Decision Trees",
+      "C) Support Vector Machines",
+      "D) Linear Regression"
+    ],
+    "correct": "D) Linear Regression"
+  },
+  "300": {
+    "question": "What is the main purpose of the activation function in a neural network?",
+    "answers": [
+      "A) Feature selection",
+      "B) Data normalization",
+      "C) Non-linearity introduction",
+      "D) Loss calculation"
+    ],
+    "correct": "C) Non-linearity introduction"
+  },
+  "400": {
+    "question": "Which of the following is an unsupervised learning technique for reducing the dimensionality of data?",
+    "answers": [
+      "A) Principal Component Analysis (PCA)",
+      "B) Gradient Descent",
+      "C) Random Forest",
+      "D) Naive Bayes"
+    ],
+    "correct": "A) Principal Component Analysis (PCA)"
+  },
+  "500": {
+    "question": "In Machine Learning, what is the term used to describe the process of evaluating a model's performance on unseen data?",
+    "answers": [
+      "A) Training",
+      "B) Testing",
+      "C) Validation",
+      "D) Overfitting"
+    ],
+    "correct": "B) Testing"
+  }
+};
+const cloudQuestions = {
+  "100": {
+    "question": "What is a key benefit of cloud computing?",
+    "answers": [
+      "A) Improved network security",
+      "B) Reduced capital expenditure",
+      "C) Slower data access",
+      "D) Limited scalability"
+    ],
+    "correct": "B) Reduced capital expenditure"
+  },
+  "200": {
+    "question": "Which cloud service model provides the highest level of control and customization for users?",
+    "answers": [
+      "A) Infrastructure as a Service (IaaS)",
+      "B) Platform as a Service (PaaS)",
+      "C) Software as a Service (SaaS)",
+      "D) Function as a Service (FaaS)"
+    ],
+    "correct": "A) Infrastructure as a Service (IaaS)"
+  },
+  "300": {
+    "question": "What is the main purpose of a Content Delivery Network (CDN) in cloud computing?",
+    "answers": [
+      "A) Data encryption",
+      "B) Load balancing",
+      "C) Virtualization",
+      "D) Database management"
+    ],
+    "correct": "B) Load balancing"
+  },
+  "400": {
+    "question": "Which cloud deployment model is known for offering the highest level of control and security, but also requires the most management overhead?",
+    "answers": [
+      "A) Public cloud",
+      "B) Private cloud",
+      "C) Hybrid cloud",
+      "D) Community cloud"
+    ],
+    "correct": "B) Private cloud"
+  },
+  "500": {
+    "question": "Which AWS service is commonly used to store and manage large volumes of structured and unstructured data?",
+    "answers": [
+      "A) Amazon EC2",
+      "B) Amazon RDS",
+      "C) Amazon S3",
+      "D) Amazon Lambda"
+    ],
+    "correct": "C) Amazon S3"
+  }
+};
+
+
+const categories = {
+  "Computer Science": computerScienceQuestions,
+  "Information Technology": informationTechnologyQuestions,
+  "Data Science": dataScienceQuestions,
+  "Machine Learning": machineLearningQuestions,
+  "Cloud": cloudQuestions
+};
+
+document.querySelectorAll('.table td').forEach(function(cell, index) {
+  cell.onclick = function() {
+    const columnIndex = index % 5; // Determine the column index
+    const categoryName = document.querySelectorAll('.table th')[columnIndex].textContent;
+    const value = cell.textContent.trim();
+
+    // Get the questions object for the current category
+    const currentCategoryQuestions = categories[categoryName];
+
+    // Check if the category and value exist in your questions objects
+    if (currentCategoryQuestions && currentCategoryQuestions[value]) {
+      localStorage.setItem('currentQuestion', JSON.stringify(currentCategoryQuestions[value]));
+      // Open the new page in a new tab
+      const newTab = window.open('quiz.html', '_blank');
+      if (newTab) {
+        newTab.focus();
+      } else {
+        alert("Please allow pop-ups for this website to open in a new tab.");
+      }
+    } else {
+      // Handle the case when the category or value doesn't exist
+      alert("Question not found for this category and value.");
+    }
+
+    cell.classList.add('clicked');
+  }
+});
+
+</script>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
