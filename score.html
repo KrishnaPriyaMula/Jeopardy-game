@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jeopardy Game - Score</title>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<style>
+  body {
+    background-color: #1e90ff; /* Adjust the color to match your screenshot */
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    height: 100vh;
+  }
+  .navbar {
+    background-color: #4169e1; /* Adjust the color to match your screenshot */
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .navbar .game-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+  }
+  .navbar .quit-button {
+    color: white;
+    background-color: red;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 15px;
+    cursor: pointer;
+  }
+  .score-container {
+    text-align: center;
+    padding-top: 3rem; /* Adjust as needed */
+  }
+  .score {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+  .score-value {
+    font-size: 3rem; /* Large font size for score value */
+  }
+</style>
+</head>
+<body>
+
+<div class="navbar">
+  <div class="game-title">JEOPARDY GAME</div>
+  <a href="gamehome.html"><button class="quit-button" onclick="window.close();">Quit screen</button></a>
+</div>
+
+<div class="score-container">
+  <div class="score">SCORE</div>
+  <div class="score-value" id="totalScoreDisplay">
+    <!-- The total score will be displayed here -->
+  </div> <!-- Replace with actual score value -->
+</div>
+
+<script>
+    // ... (your existing code)
+
+// Function to update the displayed total score
+function updateScoreDisplay() {
+    const currentScore = localStorage.getItem('totalScore') || 0;
+    document.getElementById('totalScoreDisplay').innerText = 'Total Score: ' + currentScore;
+}
+
+// ... (rest of your existing code)
+
+// Initial update of displayed total score
+updateScoreDisplay();
+
+</script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>
