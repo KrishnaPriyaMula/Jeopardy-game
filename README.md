@@ -96,7 +96,7 @@ Frontend: HTML, CSS, JavaScript, React
 Backend: Python, Django, Node.js
 Database: PostgreSQL
 Tools: VS Code, Git, GitHub, Figma
-🧾 How to Run Locally
+
 
 🧾 How to Run Locally:
 
@@ -118,5 +118,6 @@ python manage.py runserver
 cd frontend
 npm install
 npm start
+
 
 
